@@ -1178,6 +1178,58 @@
             font-size: 1rem;
             color: var(--text);
             transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .date-time-group input::-webkit-datetime-edit-fields-wrapper { 
+            color: var(--text);
+        }
+
+        .date-time-group input::-webkit-calendar-picker-indicator {
+            background-color: transparent;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* For empty date/time inputs */
+        .date-time-group input:not(:valid) {
+            color: transparent;
+        }
+
+        .date-time-group input:not(:valid)::before {
+            content: attr(data-placeholder);
+            color: #757575;
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* For mobile devices */
+        @media (max-width: 768px) {
+            .date-time-group .input-wrapper {
+                position: relative;
+            }
+            
+            .date-time-group .input-wrapper::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #757575;
+                z-index: 1;
+                pointer-events: none;
+            }
+            
+            .date-time-group input:focus + .input-wrapper::before,
+            .date-time-group input:valid + .input-wrapper::before {
+                display: none;
+            }
         }
 
         .date-time-group input:focus {
@@ -2269,6 +2321,58 @@
             font-size: 1rem;
             color: var(--text);
             transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .date-time-group input::-webkit-datetime-edit-fields-wrapper { 
+            color: var(--text);
+        }
+
+        .date-time-group input::-webkit-calendar-picker-indicator {
+            background-color: transparent;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* For empty date/time inputs */
+        .date-time-group input:not(:valid) {
+            color: transparent;
+        }
+
+        .date-time-group input:not(:valid)::before {
+            content: attr(data-placeholder);
+            color: #757575;
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* For mobile devices */
+        @media (max-width: 768px) {
+            .date-time-group .input-wrapper {
+                position: relative;
+            }
+            
+            .date-time-group .input-wrapper::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #757575;
+                z-index: 1;
+                pointer-events: none;
+            }
+            
+            .date-time-group input:focus + .input-wrapper::before,
+            .date-time-group input:valid + .input-wrapper::before {
+                display: none;
+            }
         }
 
         .date-time-group input:focus {
@@ -2758,11 +2862,11 @@
                         <option value="mehendi">Mehendi Design</option>
                 </select>
                     <div class="date-time-group">
-                        <div class="input-wrapper">
-                            <input type="date" name="date" required min="" id="appointmentDate" placeholder="Date">
+                        <div class="input-wrapper" data-label="Date">
+                            <input type="date" name="date" required min="" id="appointmentDate" data-placeholder="Date">
                         </div>
-                        <div class="input-wrapper">
-                            <input type="time" name="time" required min="09:00" max="18:00" id="appointmentTime" placeholder="Time">
+                        <div class="input-wrapper" data-label="Time">
+                            <input type="time" name="time" required min="09:00" max="18:00" id="appointmentTime" data-placeholder="Time">
                         </div>
                     </div>
                     <textarea name="message" placeholder="Your Message" required></textarea>
