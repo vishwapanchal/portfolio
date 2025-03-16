@@ -3348,6 +3348,48 @@
             
             startTyping();
         }
+
+        // Add event listeners for touch events to enable scrolling by sliding
+        const galleryTrack = document.querySelector('.sticky-gallery-track');
+        let isTouching = false;
+        let startY;
+        let scrollTop;
+
+        if (galleryTrack) {
+            galleryTrack.addEventListener('touchstart', (e) => {
+                isTouching = true;
+                startY = e.touches[0].pageY;
+                scrollTop = window.scrollY;
+            });
+
+            galleryTrack.addEventListener('touchmove', (e) => {
+                if (!isTouching) return;
+                const y = e.touches[0].pageY;
+                const walk = startY - y;
+                window.scrollTo(0, scrollTop + walk);
+            });
+
+            galleryTrack.addEventListener('touchend', () => {
+                isTouching = false;
+            });
+        }
+
+        // Ensure arrows are visible and functional
+        const leftArrow = document.querySelector('.gallery-arrow-left');
+        const rightArrow = document.querySelector('.gallery-arrow-right');
+
+        if (leftArrow && rightArrow) {
+            leftArrow.style.display = 'flex';
+            rightArrow.style.display = 'flex';
+
+            leftArrow.addEventListener('click', () => {
+                slideGallery('left');
+            });
+
+            rightArrow.addEventListener('click', () => {
+                slideGallery('right');
+            });
+        }
     </script>
 </body>
 </html>
