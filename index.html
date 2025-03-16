@@ -2647,6 +2647,41 @@
             font-size: 1.6rem;
         }
     }
+
+    /* Android-specific date/time input styling */
+    input[type="date"], input[type="time"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        min-height: 48px;
+        padding: 0.75rem 1rem;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        color: var(--text);
+        width: 100%;
+    }
+    
+    /* Add placeholder-like text for empty inputs */
+    input[type="date"]:not(:valid):before {
+        content: 'Date';
+        color: #757575;
+    }
+    
+    input[type="time"]:not(:valid):before {
+        content: 'Time';
+        color: #757575;
+    }
+    
+    /* Style the calendar and clock icons */
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator {
+        background-color: transparent;
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+    }
     </style>
 </head>
 <body>
