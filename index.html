@@ -56,18 +56,21 @@
     }
 
     nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 5%;
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-        backdrop-filter: blur(10px);
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0; /* Ensures no gap on the left */
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    box-sizing: border-box; /* Prevents padding from affecting width */
+}
+
 
     .logo {
         font-size: 1.5rem;
@@ -2143,7 +2146,7 @@
     @media (max-width: 768px) {
         header {
             padding: 0.8rem 1rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 2rem; /* Increase margin below header */
         }
 
         .logo {
@@ -2159,7 +2162,7 @@
         }
 
         .hero {
-            margin-bottom: 1.5rem;
+            margin-bottom: 3rem; /* Increase margin below hero image */
         }
 
         .hero-content {
@@ -2220,7 +2223,7 @@
     @media (max-width: 480px) {
         header {
             padding: 0.6rem 0.8rem;
-            margin-bottom: 0.6rem;
+            margin-bottom: 1.5rem; /* Increase margin below header */
         }
 
         .logo {
@@ -3348,5 +3351,4 @@
     </script>
 </body>
 </html>
-
 
