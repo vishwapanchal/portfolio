@@ -1151,7 +1151,37 @@
         }
 
         .date-time-group {
-            grid-template-columns: 1fr;
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .date-time-group .input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .date-time-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .date-time-group input {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .date-time-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .date-time-group label {
+                font-size: 0.9rem;
+            }
         }
 
         .social-links {
@@ -2205,8 +2235,31 @@
             gap: 1rem;
         }
 
+        .date-time-group .input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .date-time-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
         .date-time-group input {
             width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .date-time-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .date-time-group label {
+                font-size: 0.9rem;
+            }
         }
 
         .sticky-gallery-container {
@@ -2679,8 +2732,14 @@
                         <option value="mehendi">Mehendi Design</option>
                 </select>
                     <div class="date-time-group">
-                        <input type="date" name="date" required min="" id="appointmentDate" placeholder="Select Date">
-                        <input type="time" name="time" required min="09:00" max="18:00" id="appointmentTime" placeholder="Select Time">
+                        <div class="input-wrapper">
+                            <label for="appointmentDate">Date</label>
+                            <input type="date" name="date" required min="" id="appointmentDate" placeholder="Select Date">
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="appointmentTime">Time</label>
+                            <input type="time" name="time" required min="09:00" max="18:00" id="appointmentTime" placeholder="Select Time">
+                        </div>
                     </div>
                     <textarea name="message" placeholder="Your Message" required></textarea>
                     <button type="submit" class="submit-btn">Book Now</button>
