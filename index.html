@@ -1171,6 +1171,19 @@
 
         .date-time-group input {
             width: 100%;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .date-time-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.2);
         }
 
         @media (max-width: 768px) {
@@ -2249,6 +2262,19 @@
 
         .date-time-group input {
             width: 100%;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .date-time-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.2);
         }
 
         @media (max-width: 768px) {
@@ -2733,12 +2759,10 @@
                 </select>
                     <div class="date-time-group">
                         <div class="input-wrapper">
-                            <label for="appointmentDate">Date</label>
-                            <input type="date" name="date" required min="" id="appointmentDate" placeholder="Select Date">
+                            <input type="date" name="date" required min="" id="appointmentDate" placeholder="Date">
                         </div>
                         <div class="input-wrapper">
-                            <label for="appointmentTime">Time</label>
-                            <input type="time" name="time" required min="09:00" max="18:00" id="appointmentTime" placeholder="Select Time">
+                            <input type="time" name="time" required min="09:00" max="18:00" id="appointmentTime" placeholder="Time">
                         </div>
                     </div>
                     <textarea name="message" placeholder="Your Message" required></textarea>
