@@ -30,13 +30,6 @@ A modern, responsive website for Priya JP Makeovers Beauty Studio. This portfoli
 2. Open index.html in your browser
 3. No build process required - it's a static website
 
-## Contact
-
-For any inquiries, please reach out to:
-- Email: priyajpmakeovers.in@gmail.com
-- Phone: +91 6360646460
-- Instagram: [Priya JP Makeovers](https://instagram.com)
-
 ## License
 
 This project is licensed under the MIT License. 
