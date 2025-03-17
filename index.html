@@ -3138,37 +3138,30 @@
 
                 // Navigation functions
                 function slideGallery(direction) {
-                    const totalItems = galleryTrack.children.length - 3; // Subtract cloned items
-                    const maxPosition = (totalItems - 1) * (itemWidth + 20);
+                    const galleryTrack = document.querySelector('.sticky-gallery-track');
+                    const galleryItems = document.querySelectorAll('.sticky-gallery-item');
                     
+                    if (!galleryTrack || galleryItems.length === 0) return;
+                    
+                    const itemWidth = galleryItems[0].offsetWidth;
+                    const currentScroll = galleryTrack.scrollLeft;
+                    
+                    // Calculate the new scroll position to ensure one full image is displayed
+                    let newScroll;
                     if (direction === 'left') {
-                        currentPosition = Math.max(0, currentPosition - (itemWidth + 20));
+                        newScroll = Math.floor(currentScroll / itemWidth) * itemWidth - itemWidth;
                     } else {
-                        currentPosition = Math.min(maxPosition, currentPosition + (itemWidth + 20));
+                        newScroll = Math.ceil(currentScroll / itemWidth) * itemWidth + itemWidth;
                     }
                     
-                    // Handle infinite scroll
-                    if (currentPosition >= maxPosition) {
-                        setTimeout(() => {
-                            galleryTrack.style.transition = 'none';
-                            currentPosition = 0;
-                            galleryTrack.style.transform = `translateX(0)`;
-                            setTimeout(() => {
-                                galleryTrack.style.transition = 'transform 0.5s ease';
-                            }, 50);
-                        }, 500);
-                    } else if (currentPosition <= 0) {
-                        setTimeout(() => {
-                            galleryTrack.style.transition = 'none';
-                            currentPosition = maxPosition;
-                            galleryTrack.style.transform = `translateX(-${maxPosition}px)`;
-                            setTimeout(() => {
-                                galleryTrack.style.transition = 'transform 0.5s ease';
-                            }, 50);
-                        }, 500);
-                    }
+                    // Ensure we don't scroll beyond the limits
+                    newScroll = Math.max(0, Math.min(newScroll, galleryTrack.scrollWidth - galleryTrack.clientWidth));
                     
-                    galleryTrack.style.transform = `translateX(-${currentPosition}px)`;
+                    // Smooth scroll to the new position
+                    galleryTrack.scrollTo({
+                        left: newScroll,
+                        behavior: 'smooth'
+                    });
                 }
 
                 // Event listeners for arrows
@@ -3613,6 +3606,41 @@
                 slideGallery('right');
             });
         }
+
+        // Add responsive styles for the gallery to ensure one full image at a time
+        document.addEventListener('DOMContentLoaded', function() {
+            const mediaQuery = window.matchMedia('(max-width: 768px)');
+            const galleryTrack = document.querySelector('.sticky-gallery-track');
+            const galleryItems = document.querySelectorAll('.sticky-gallery-item');
+            
+            function adjustGalleryForMobile() {
+                if (mediaQuery.matches && galleryTrack && galleryItems.length > 0) {
+                    // For mobile: set item width to 100% of container
+                    galleryItems.forEach(item => {
+                        item.style.width = '100%';
+                        item.style.flex = '0 0 100%';
+                    });
+                    
+                    // Ensure proper snap scrolling
+                    galleryTrack.style.scrollSnapType = 'x mandatory';
+                    galleryItems.forEach(item => {
+                        item.style.scrollSnapAlign = 'center';
+                    });
+                } else if (galleryTrack && galleryItems.length > 0) {
+                    // Reset for desktop if needed
+                    galleryItems.forEach(item => {
+                        item.style.width = '';
+                        item.style.flex = '';
+                    });
+                }
+            }
+            
+            // Initial adjustment
+            adjustGalleryForMobile();
+            
+            // Adjust on resize
+            mediaQuery.addEventListener('change', adjustGalleryForMobile);
+        });
     </script>
 </body>
 </html>
